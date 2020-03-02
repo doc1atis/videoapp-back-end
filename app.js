@@ -4,6 +4,8 @@ const passport = require("passport");
 const mongoose = require("mongoose");
 const { userRouter } = require("./routes");
 require("dotenv").config();
+// const authenticate = require("authenticate");
+console.log(process.env.MONGO_URI);
 
 const app = express();
 

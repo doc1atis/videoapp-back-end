@@ -1,3 +1,1 @@
-let userRouter = require("./users");
-
-module.exports = { userRouter };
+exports.userRouter = require("./users");
