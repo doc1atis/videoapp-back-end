@@ -18,4 +18,4 @@ const playlistSchema = new Schema({
   ]
 });
 
-module.exports = mongoose.model("User", playlistSchema);
+module.exports = mongoose.model("Playlist", playlistSchema);

@@ -49,3 +49,12 @@ exports.login = (req, res) => {
   const token = authenticate.getToken({ _id: req.user._id });
   res.send({ success: true, token });
 };
+
+exports.deleteUser = async (req, res) => {
+  try {
+    await req.user.remove();
+    res.send();
+  } catch (err) {
+    res.send({ err });
+  }
+};

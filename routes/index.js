@@ -1,1 +1,2 @@
-exports.userRouter = require("./users");
+exports.userRouter = require("./user");
+exports.playlistRouter = require("./playlist");

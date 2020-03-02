@@ -14,4 +14,4 @@ const commentSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model("Video", commentSchema);
+module.exports = mongoose.model("Comment", commentSchema);

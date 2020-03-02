@@ -27,7 +27,6 @@ exports.jwtPassport = passport.use(
       } else if (user) {
         return done(null, user);
       } else {
-        // there was no error, and no user found
         return done(null, false);
       }
     });
