@@ -6,7 +6,8 @@ const {
   userRouter,
   playlistRouter,
   videoRouter,
-  postRouter
+  postRouter,
+  commentRouter
 } = require("./routes");
 require("dotenv").config();
 
@@ -30,5 +31,6 @@ app.use("/users", userRouter);
 app.use("/playlists", playlistRouter);
 app.use("/videos", videoRouter);
 app.use("/posts", postRouter);
+app.use("/comments", commentRouter);
 
 module.exports = app;

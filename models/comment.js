@@ -6,11 +6,25 @@ const commentSchema = new Schema({
     type: String,
     required: true
   },
-  likes: Number,
-  dislikes: Number,
+  likes: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User"
+    }
+  ],
+  dislikes: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User"
+    }
+  ],
   owner: {
     type: mongoose.Schema.ObjectId,
     ref: "User"
+  },
+  post: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Post"
   }
 });
 
