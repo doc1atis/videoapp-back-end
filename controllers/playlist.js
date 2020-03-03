@@ -1,4 +1,4 @@
-const Playlist = require("../models/playlist");
+const { Playlist } = require("../models");
 
 exports.index = async (req, res) => {
   try {
