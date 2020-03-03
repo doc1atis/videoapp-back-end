@@ -8,11 +8,10 @@ const videoSchema = new Schema({
   },
   owner: {
     type: mongoose.Schema.ObjectId,
-    ref: "Comment"
+    ref: "User"
   },
   content: {
-    type: String,
-    required: true
+    type: String
   },
   comments: [
     {
@@ -20,8 +19,18 @@ const videoSchema = new Schema({
       ref: "Comment"
     }
   ],
-  likes: Number,
-  Dislikes: Number
+  likes: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User"
+    }
+  ],
+  dislikes: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User"
+    }
+  ]
 });
 
 module.exports = mongoose.model("Video", videoSchema);

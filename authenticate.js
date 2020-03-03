@@ -1,23 +1,22 @@
+require("dotenv").config();
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const User = require("./models/user");
+const { User } = require("./models");
 const JwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
 const jwt = require("jsonwebtoken");
-
-const config = require("./config.js");
 
 exports.local = passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 exports.getToken = user => {
-  return jwt.sign(user, config.secretKey, { expiresIn: 3600 * 10 });
+  return jwt.sign(user, process.env.SECRET_KEY, { expiresIn: 3600 * 10 });
 };
 
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = config.secretKey;
+opts.secretOrKey = process.env.SECRET_KEY;
 
 exports.jwtPassport = passport.use(
   new JwtStrategy(opts, (jwt_payload, done) => {
@@ -28,7 +27,6 @@ exports.jwtPassport = passport.use(
       } else if (user) {
         return done(null, user);
       } else {
-        // there was no error, and no user found
         return done(null, false);
       }
     });
