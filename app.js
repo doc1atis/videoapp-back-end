@@ -2,6 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const passport = require("passport");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const {
   userRouter,
   playlistRouter,
@@ -26,11 +27,12 @@ mongoose
 
 app.use(logger("dev"));
 app.use(express.json());
+app.use(cors());
 app.use(passport.initialize());
-app.use("/users", userRouter);
-app.use("/playlists", playlistRouter);
-app.use("/videos", videoRouter);
-app.use("/posts", postRouter);
-app.use("/comments", commentRouter);
+app.use("/api/users", userRouter);
+app.use("/api/playlists", playlistRouter);
+app.use("/api/videos", videoRouter);
+app.use("/api/posts", postRouter);
+app.use("/api/comments", commentRouter);
 
 module.exports = app;

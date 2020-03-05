@@ -30,10 +30,12 @@ exports.register = async (req, res) => {
         try {
           await user.save();
           passport.authenticate("local")(req, res, () => {
-            const token = authenticate.getToken({ _id: req.user._id });
+            const token = authenticate.getToken({
+              _id: req.user._id,
+              username: req.user.username
+            });
             res.send({
-              success: true,
-              status: "registration successful",
+              user,
               token
             });
           });
@@ -46,8 +48,15 @@ exports.register = async (req, res) => {
 };
 
 exports.login = (req, res) => {
-  const token = authenticate.getToken({ _id: req.user._id });
-  res.send({ success: true, token });
+  const token = authenticate.getToken({
+    _id: req.user._id,
+    username: req.user.username
+  });
+  res.send({ success: true, user: req.user, token });
+};
+
+exports.show = (req, res) => {
+  res.send(req.user);
 };
 
 exports.deleteUser = async (req, res) => {
