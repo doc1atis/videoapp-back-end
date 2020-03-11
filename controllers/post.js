@@ -58,6 +58,7 @@ exports.like = async (req, res) => {
       post.likes.pull(req.user._id);
     } else {
       post.likes.push(req.user._id);
+      post.dislikes.pull(req.user._id);
     }
 
     await post.save();
@@ -87,6 +88,7 @@ exports.dislike = async (req, res) => {
       post.dislikes.pull(req.user._id);
     } else {
       post.dislikes.push(req.user._id);
+      post.likes.pull(req.user._id);
     }
 
     await post.save();
